@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>e-Register Verification Portal — Office of the Lieutenant Governor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="ds/tokens/fonts.css">
+  <link rel="stylesheet" href="ds/tokens/colors.css">
+  <link rel="stylesheet" href="ds/tokens/typography.css">
+  <link rel="stylesheet" href="ds/tokens/spacing.css">
+  <link rel="stylesheet" href="ds/tokens/shadows.css">
+  <link rel="stylesheet" href="ds/tokens/base.css">
+  <link rel="stylesheet" href="ds/components.css">
+  <link rel="stylesheet" href="ds/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="ds/ds-bundle.js"></script>
+  <style>
+    html, body { margin: 0; background: var(--ax-gray-50); }
+    * { box-sizing: border-box; }
+    a { color: var(--ax-sea-depths); }
+    a:hover { color: var(--ax-teal-700); }
+    .ax-btn--primary:hover:not(:disabled) { background: rgb(8,61,65) !important; border-color: rgb(8,61,65) !important; }
+    .ax-btn--secondary:hover:not(:disabled) { background: rgb(242,242,242) !important; }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: var(--ax-gray-50); font-family: var(--ax-font-base); color: var(--ax-text-primary); display: flex; flex-direction: column;">
+
+  <header style="position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--ax-gray-200); box-shadow: var(--ax-shadow-xs);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: clamp(0.75rem, 2vw, 1.25rem) clamp(0.75rem, 2vw, 1.25rem); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 1.5rem); min-width: 0;">
+        <a href="https://authentications.utah.gov" target="_blank" rel="noopener" style="display: flex; min-width: 0; padding: 4px 8px; margin: -4px -8px; border-radius: 8px; background: transparent; transition: background-color 150ms ease;" style-hover="background: var(--ax-gray-200);" style-focus="outline: none; box-shadow: 0 0 0 4px rgba(0,182,189,.35);" aria-label="Office of Delmarva Secretary of State">
+        <span style="display:flex;align-items:center;gap:clamp(8px,1.2vw,14px);min-width:0;"><img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="display:block;flex:none;width:clamp(40px, 5vw, 60px);height:clamp(40px, 5vw, 60px);filter:brightness(0) invert(10%) sepia(60%) saturate(2800%) hue-rotate(205deg) brightness(95%);"><span style="display:flex;flex-direction:column;line-height:1.15;font-family:'Century Schoolbook','New Century Schoolbook','Century Schoolbook L','TeX Gyre Schola',Georgia,serif;color:#071D49;"><span style="font-size:clamp(12px,1.5vw,18px);">Office of Delmarva</span><span style="font-size:clamp(17px,2.3vw,28px);font-weight:700;">Secretary of State</span></span></span>
+      </a><sc-if value="{{ homeLeft }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="{{ navBtnSize }}" leading-icon="{{ icons.house }}" on-click="{{ goLtGov }}" aria-label="Home — Office of the Utah Lieutenant Governor" hint-size="80px,40px">Home</x-import>
+        </sc-if>
+        
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+        <sc-if value="{{ homeRight }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="{{ navBtnSize }}" leading-icon="{{ icons.house }}" on-click="{{ goLtGov }}" aria-label="Home — Office of the Utah Lieutenant Governor" hint-size="100px,44px">Home</x-import>
+        </sc-if>
+        <sc-if value="{{ showOrder }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="{{ navBtnSize }}" on-click="{{ goHome }}" hint-size="180px,44px">Order an Apostille</x-import>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <section data-screen-label="Hero" style="position: relative; background-image: url('assets/hero-utah-capitol.png'); background-size: cover; background-position: 70% center; min-height: {{ heroMinH }}; flex: {{ heroFlex }}; max-height: {{ heroMaxH }}; box-sizing: border-box;">
+    <div style="max-width: 90rem; margin: 0 auto; box-sizing: border-box; padding: {{ heroPad }};">
+      <sc-if value="{{ showHeroText }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; align-items: center; gap: 10px; color: #071D49; font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: clamp(12px, 1.3vw, 16px);">
+        <span style="width: 16px; height: 2px; background: #071D49;"></span>
+        <span style="color: #000000">Trusted for a Connected World</span>
+        <span style="width: 16px; height: 2px; background: #071D49;"></span>
+      </div>
+      <h1 style="margin: clamp(6px, 1vh, 12px) 0 clamp(4px, 1vh, 10px); font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; font-size: clamp(28px, min(4.4vw, 6vh), 56px); line-height: 1.12; color: #000000; max-width: 900px; text-wrap: pretty">Apostille and Authentication Services</h1>
+      <p style="margin: 0; font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; font-size: clamp(16px, 1.8vw, 24px); color: #000000">Secure. Efficient. Globally Accepted.</p>
+      </sc-if>
+    </div>
+  </section>
+
+  <main style="position: relative; padding: 0 clamp(12px, 4vw, 48px) clamp(12px, 2vh, 24px); flex: 0 0 auto;">
+    <div data-screen-label="e-Register Card" style="max-width: 1160px; margin: 0 auto; background: #fff; border: 1px solid var(--ax-gray-200); border-radius: 12px; box-shadow: var(--ax-shadow-lg); overflow: visible;">
+
+      <div style="position: relative; background: var(--ax-sea-depths); color: #fff; border-radius: 12px 12px 0 0; padding: clamp(14px, 2.2vh, 24px) clamp(104px, 14vw, 180px) clamp(14px, 2.2vh, 24px) clamp(20px, 4vw, 60px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px;">
+        <h2 style="margin: 0; font-weight: 600; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.25; color: #fff;">e-Register Verification Portal</h2>
+        <span style="font-size: clamp(13px, 1.3vw, 16px); color: rgba(255,255,255,0.92);">Office of Delmarva Secretary of State</span>
+        <span style="position:absolute;right:clamp(12px,2.4vw,32px);bottom:clamp(-38px,-3.4vw,-30px);width:clamp(88px,9vw,112px);height:clamp(88px,9vw,112px);z-index:2;border-radius:50%;background:#0D5257;border:4px solid #0D5257;box-sizing:border-box;display:flex;align-items:center;justify-content:center;"><img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="width:86%;height:86%;display:block;filter:brightness(0) invert(1);"></span>
+      </div>
+
+      <div style="display: flex; flex-wrap: {{ panelWrap }}; gap: 1px; background: var(--ax-gray-200); border-radius: 0 0 12px 12px; overflow: hidden;">
+
+        <sc-if value="{{ isVerify }}" hint-placeholder-val="{{ true }}">
+          <div style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(20px, 4vh, 48px) 24px clamp(20px, 4vh, 48px) clamp(20px, 4vw, 60px);">
+            <h3 style="margin: 0 0 clamp(10px, 2vh, 20px); font-weight: 600; font-size: 1.5rem; line-height: 1.2; color: #000000; text-wrap: pretty; max-width: 440px">Verify an Apostille or Authentication</h3>
+            <p style="margin: 0 0 clamp(16px, 3vh, 32px); font-size: 18px; line-height: 1.5; color: var(--ax-text-secondary); text-wrap: pretty;">Use the e-Register to verify the authenticity and status of an Apostille or Authentication issued by the State of Utah.</p>
+            <div style="display: flex; flex-direction: column; gap: clamp(10px, 1.8vh, 18px);">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <img src="assets/icon-official-source.svg" alt="" width="48" height="48" style="width: 48px; height: 48px; flex-shrink: 0; display: block;">
+                <span style="font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">Official Source for Verification</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <img src="assets/icon-secure.svg" alt="" width="48" height="48" style="width: 48px; height: 48px; flex-shrink: 0; display: block;">
+                <span style="font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">Secure and Reliable</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <img src="assets/icon-accepted-worldwide.svg" alt="" width="48" height="48" style="width: 48px; height: 48px; flex-shrink: 0; display: block;">
+                <span style="font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">Part of the Hague e-APP Framework</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(20px, 4vh, 48px) clamp(20px, 4vw, 60px) clamp(20px, 4vh, 48px) 24px; display: flex; flex-direction: column; gap: clamp(10px, 1.8vh, 20px);">
+            <div>
+              <h3 style="margin: 0 0 6px; font-weight: 600; font-size: 1.5rem; line-height: 1.25; color: #071D49;">Apostille/Certificate Details</h3>
+              <p style="margin: 0; font-size: 15px; color: var(--ax-text-tertiary);">For example: DM-1234-5678-9010</p>
+            </div>
+
+            <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Alert" kind="danger" title="No record found" hint-size="100%,72px">No apostille or authentication matches {{ lastQuery }}. Check the number on your certificate and try again.</x-import>
+            </sc-if>
+
+            <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FormField" label="Certificate Number" required="{{ true }}" hint="Enter the numbers only" error="{{ errors.cert }}" hint-size="100%,96px">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" leading-icon="DM-" value="{{ cert }}" on-change="{{ onCert }}" placeholder="1234-5678-9010" input-mode="numeric" autocomplete="off" aria-label="Certificate Number" invalid="{{ certInvalid }}" hint-size="100%,50px"></x-import>
+            </x-import>
+
+            <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FormField" label="Verify Certificate Number" required="{{ true }}" error="{{ errors.confirm }}" hint-size="100%,76px">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" leading-icon="DM-" value="{{ confirm }}" on-change="{{ onConfirm }}" placeholder="1234-5678-9010" input-mode="numeric" autocomplete="off" aria-label="Verify Certificate Number" invalid="{{ confirmInvalid }}" hint-size="100%,50px"></x-import>
+            </x-import>
+
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: clamp(8px, 1.4vh, 14px) 16px; background: var(--ax-gray-50); border: 1px solid {{ captchaBorder }}; border-radius: 6px; box-shadow: var(--ax-shadow-xs); max-width: 100%;">
+                <button type="button" onClick="{{ onCaptcha }}" aria-label="I’m not a robot" style="display: flex; align-items: center; gap: 14px; background: none; border: none; padding: 0; cursor: pointer; font-family: var(--ax-font-base); font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">
+                  <span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 3px; background: #fff; border: 2px solid {{ captchaBoxBorder }}; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: var(--ax-success-600);">
+                    <sc-if value="{{ captchaLoading }}" hint-placeholder-val="{{ false }}">
+                      <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Spinner" size="sm" hint-size="18px,18px"></x-import>
+                    </sc-if>
+                    <sc-if value="{{ captchaChecked }}" hint-placeholder-val="{{ false }}"><i class="bi bi-check-lg"></i></sc-if>
+                  </span>
+                  <span>I’m not a robot</span>
+                </button>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 1px; color: var(--ax-text-tertiary);">
+                  <i class="bi bi-arrow-repeat" style="font-size: 28px; line-height: 1; color: var(--ax-info-600);"></i>
+                  <span style="font-size: 10px;">reCAPTCHA</span>
+                  <span style="font-size: 9px;">Privacy - Terms</span>
+                </div>
+              </div>
+              <sc-if value="{{ errors.captcha }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 13px; color: var(--ax-text-error);">{{ errors.captcha }}</span>
+              </sc-if>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="lg" full-width="{{ true }}" on-click="{{ onClear }}" hint-size="100%,44px">Clear</x-import>
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ verifying }}" on-click="{{ onVerify }}" hint-size="100%,44px">Verify</x-import>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Certificate Result" style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 60px); display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; justify-content: flex-start;">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="link-gray" size="md" leading-icon="{{ icons.back }}" on-click="{{ onClear }}" hint-size="160px,20px">Verify Another</x-import>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+                <h3 style="margin: 0; font-weight: 600; font-size: 1.5rem; line-height: 1.25; color: #071D49;">Apostille/Certificate Details</h3>
+                <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Badge" color="{{ record.badgeColor }}" size="lg" pill="{{ true }}" dot="{{ true }}" hint-size="80px,28px">{{ record.status }}</x-import>
+              </div>
+              <p style="margin: 0; font-size: 15px; color: var(--ax-text-tertiary);">Certificate No. <strong style="color: var(--ax-text-primary); font-weight: 600;">{{ record.number }}</strong></p>
+            </div>
+
+            <sc-if value="{{ isIssued }}" hint-placeholder-val="{{ true }}">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Alert" kind="success" title="Authentic apostille" hint-size="100%,72px">This certificate matches an apostille issued by the Office of the Lieutenant Governor and is currently valid.</x-import>
+            </sc-if>
+            <sc-if value="{{ isRevoked }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Alert" kind="danger" title="This apostille was revoked" hint-size="100%,72px">Revoked on {{ record.revokedOn }}. It is no longer valid and should not be accepted.</x-import>
+            </sc-if>
+
+            <dl style="margin: 0; border: 1px solid var(--ax-gray-200); border-radius: 10px; overflow: hidden;">
+              <sc-for list="{{ record.fields }}" as="row" hint-placeholder-count="8">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 2px 16px; padding: 12px 16px; border-top: 1px solid var(--ax-gray-200); background: {{ row.bg }};">
+                  <dt style="font-size: 14px; color: var(--ax-text-tertiary);">{{ row.label }}</dt>
+                  <dd style="margin: 0; font-size: 15px; font-weight: 500; color: var(--ax-text-primary);">{{ row.value }}</dd>
+                </div>
+              </sc-for>
+            </dl>
+          </div>
+
+          <div data-screen-label="Download" style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 60px); display: flex; flex-direction: column; gap: 24px;">
+            <div>
+              <h3 style="margin: 0 0 6px; font-weight: 600; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.25; color: #071D49;">Download e-Apostille</h3>
+              <p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--ax-text-tertiary); text-wrap: pretty;">To protect the certificate holder, we confirm your identity by email before releasing the PDF.</p>
+            </div>
+
+            <sc-if value="{{ isRevoked }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px; border: 1px dashed var(--ax-gray-300); border-radius: 10px; background: var(--ax-gray-50);">
+                <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FeaturedIcon" icon="{{ icons.lock }}" color="danger" size="lg" hint-size="48px,48px"></x-import>
+                <div style="font-size: 16px; font-weight: 600;">Download unavailable</div>
+                <div style="font-size: 14px; color: var(--ax-text-secondary); line-height: 1.5;">Revoked apostilles cannot be downloaded. Contact the Office of the Lieutenant Governor at <a href="mailto:authentications@utah.gov">authentications@utah.gov</a> for help.</div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isIssued }}" hint-placeholder-val="{{ true }}">
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Stepper" steps="{{ dlSteps }}" current="{{ dlIndex }}" hint-size="100%,64px"></x-import>
+
+              <sc-if value="{{ dlEmail }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FormField" label="Email Address" required="{{ true }}" hint="We’ll send a 6-digit code to this address." error="{{ errors.email }}" hint-size="100%,96px">
+                    <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" type="email" leading-icon="{{ icons.envelope }}" value="{{ email }}" on-change="{{ onEmail }}" placeholder="you@example.com" autocomplete="email" invalid="{{ emailInvalid }}" hint-size="100%,50px"></x-import>
+                  </x-import>
+                  <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ sending }}" on-click="{{ onSendCode }}" hint-size="100%,44px">Send Code</x-import>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ dlOtp }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--ax-text-secondary);">We emailed a code to <strong style="color: var(--ax-text-primary);">{{ maskedEmail }}</strong>. It expires in 10 minutes.</p>
+                  <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FormField" label="Verification Code" required="{{ true }}" error="{{ errors.code }}" hint-size="100%,76px">
+                    <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" value="{{ code }}" on-change="{{ onCode }}" placeholder="••••••" input-mode="numeric" autocomplete="one-time-code" max-length="6" invalid="{{ codeInvalid }}" style="font-size: 22px; letter-spacing: 0.5em; text-align: center; font-weight: 600;" hint-size="100%,54px"></x-import>
+                  </x-import>
+                  <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ checking }}" on-click="{{ onCheckCode }}" hint-size="100%,44px">Verify Code</x-import>
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;">
+                    <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="link-gray" size="sm" leading-icon="{{ icons.pencil }}" on-click="{{ onChangeEmail }}" hint-size="120px,20px">Change Email</x-import>
+                    <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="link" size="sm" disabled="{{ resendDisabled }}" on-click="{{ onResend }}" hint-size="140px,20px">{{ resendLabel }}</x-import>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ dlDone }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Alert" kind="success" title="Identity verified" hint-size="100%,56px">Your e-Apostille is ready to download.</x-import>
+                  <div style="display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--ax-gray-200); border-radius: 10px; box-shadow: var(--ax-shadow-xs);">
+                    <i class="bi bi-file-earmark-pdf-fill" style="font-size: 32px; color: var(--ax-danger-600);"></i>
+                    <div style="flex: 1; min-width: 0;">
+                      <div style="font-size: 15px; font-weight: 600; overflow-wrap: anywhere;">{{ fileName }}</div>
+                      <div style="font-size: 13px; color: var(--ax-text-tertiary);">e-Apostille · PDF · Digitally signed</div>
+                    </div>
+                  </div>
+                  <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" leading-icon="{{ icons.download }}" on-click="{{ onDownload }}" hint-size="100%,44px">Download e-Apostille</x-import>
+                  <sc-if value="{{ downloaded }}" hint-placeholder-val="{{ false }}">
+                    <p style="margin: 0; font-size: 13px; color: var(--ax-text-tertiary); text-align: center;">Download started. Check your browser’s downloads folder.</p>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </main>
+
+  <sc-if value="{{ oldFooter }}" hint-placeholder-val="{{ false }}">
+    <footer data-screen-label="Footer" style="margin-top: auto; background: #fff; border-top: 1px solid var(--ax-gray-200);">
+      <div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem 3rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <h2 style="margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; color: var(--ax-text-primary);">Office of the Utah Lieutenant Governor</h2>
+          <address style="font-style: normal; font-size: 0.9375rem; line-height: 1.6; color: var(--ax-text-secondary);">350 N State Street, Suite 220<br>PO Box 142325<br>Salt Lake City, Utah 84114</address>
+        <div style="font-size: 0.9375rem; line-height: 1.6; color: var(--ax-text-primary);">Phone: 801-538-1041<br>Fax: 801-538-1133</div>
+        <div style="font-size: 0.9375rem; line-height: 1.6; color: var(--ax-text-primary);"><strong style="font-weight: 600;">Office Hours</strong><br>Open Monday – Friday, 8:00 a.m. to 5:00 p.m.<br>Excluding State and Federal holidays.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <h2 style="margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; color: var(--ax-text-primary);">Contact</h2>
+          <div style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9375rem; line-height: 1.6; color: var(--ax-text-secondary);">
+            <span>Phone: <a href="tel:+18015381041" style="color: var(--ax-sea-depths);">801-538-1041</a></span>
+            <span>Fax: 801-538-1133</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <h2 style="margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; color: var(--ax-text-primary);">Office Hours</h2>
+          <p style="margin: 0; font-size: 0.9375rem; line-height: 1.6; color: var(--ax-text-secondary); text-wrap: pretty;">Open Monday – Friday, 8:00 a.m. to 5:00 p.m.<br>Excluding State and Federal holidays.</p>
+        </div>
+      </div>
+    </footer>
+  </sc-if>
+
+  <sc-if value="{{ newFooterOn }}" hint-placeholder-val="{{ false }}">
+    <footer data-screen-label="Footer (Seal)" style="margin-top: auto; background: #fff; border-top: 1px solid var(--ax-gray-200);">
+      <div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: clamp(1.25rem, 2.2vw, 2rem) clamp(0.75rem, 2vw, 1.25rem); display: grid; grid-template-columns: {{ footCols }}; align-items: start; justify-content: space-between; column-gap: 1rem; row-gap: 1rem;">
+        <div style="display: flex; align-items: center; align-self: center; gap: 1rem; grid-column: {{ footFirst }};">
+          <img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="display:block;flex:none;width:4.5rem;height:4.5rem;filter:brightness(0) invert(10%) sepia(60%) saturate(2800%) hue-rotate(205deg) brightness(95%);">
+          <span style="font-size: 0.9375rem; font-weight: 500; line-height: 1.35; color: var(--ax-text-primary); max-width: 11rem;">Delmarva Secretary of State</span>
+        </div>
+        <address style="font-style: normal; font-size: 0.875rem; line-height: 1.6; color: var(--ax-text-primary); box-sizing: border-box; {{ footDiv }}"><span><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Address</span>350 N State Street, Suite 220<br>PO Box 142325<br>Salt Lake City, Utah 84114</span></address>
+        <div style="font-size: 0.875rem; line-height: 1.6; color: var(--ax-text-primary); box-sizing: border-box; {{ footDiv }}"><span><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Contact</span>Phone: 801-538-1041<br>Fax: 801-538-1133</span></div>
+        <div style="font-size: 0.875rem; line-height: 1.6; color: var(--ax-text-primary); box-sizing: border-box; {{ footDiv }}"><span><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Office Hours</span>Open Monday – Friday, 8:00 a.m. to 5:00 p.m.<br>Excluding State and Federal holidays.</span></div>
+        <div style="box-sizing: border-box; {{ footDiv }}"><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Resources</span><nav style="display: flex; flex-direction: column; gap: 0.15rem;"><a href="https://authentications.utah.gov/request-form/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Request Forms</a><a href="https://authentications.utah.gov/news/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">News &amp; Updates</a><a href="https://authentications.utah.gov/frequently-asked-questions/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">FAQs</a><a href="https://authentications.utah.gov/contact-us/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Contact Us</a></nav></div>
+        <div style="box-sizing: border-box; {{ footDiv }}"><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Services</span><nav style="display: flex; flex-direction: column; gap: 0.15rem;"><a href="https://authentications.utah.gov/process-from-home-page/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Document Authentication</a><a href="https://authentications.utah.gov/process-from-home-page/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Schedule An Appointment</a><a href="https://authentications.utah.gov/type-of-document-from-home-page/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Types of Documents</a></nav></div>
+      </div>
+    </footer>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;feedbackChanges&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Client Feedback&quot;},&quot;redirectToOfficial&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Client Feedback&quot;},&quot;homeLinkLeft&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Client Feedback&quot;},&quot;showHeroText&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showHomeButton&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Nav Bar&quot;},&quot;newFooter&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Client Feedback&quot;}}">
+class Component extends DCLogic {
+  state = { step: 'verify', cert: '', confirm: '', captcha: 'idle', errors: {}, verifying: false, notFound: false, lastQuery: '', record: null, dl: 'email', email: '', code: '', sending: false, checking: false, resendIn: 0, downloaded: false };
+
+  componentDidMount() { this._onRs = () => { this.setState({ footW: window.innerWidth }); this.fitCard(); }; this._onRs(); window.addEventListener('resize', this._onRs); this._mq = window.matchMedia('(max-width: 767px)'); this._onMq = () => this.setState({ isMobile: this._mq.matches }); this._onMq(); this._mq.addEventListener('change', this._onMq); }
+  componentWillUnmount() { window.removeEventListener('resize', this._onRs); this._mq && this._mq.removeEventListener('change', this._onMq); }
+  componentDidUpdate() { this.fitCard(); }
+  fitCard() { const hero = document.querySelector('[data-screen-label="Hero"]'), m = document.querySelector('main'); if (!hero || !m) return; const w = window.innerWidth, want = Math.min(Math.max(72, Math.min(0.13 * w, 183)) + 64, hero.offsetHeight - 24); m.style.marginTop = -Math.max(want, 0) + 'px'; }
+  fmt(v) { const d = String(v).replace(/\D/g, '').slice(0, 12); return d.replace(/(\d{4})(?=\d)/g, '$1-'); }
+  digits(v) { return String(v).replace(/\D/g, ''); }
+  ico(n) { return React.createElement('i', { className: 'bi bi-' + n }); }
+  componentWillUnmount() { window.removeEventListener('resize', this._onRs); clearInterval(this.timer); clearTimeout(this.t1); }
+
+  lookup(num) {
+    const d = this.digits(num);
+    const mode = this.props.demoOutcome ?? 'Auto';
+    let status = 'Issued';
+    if (mode === 'Revoked' || (mode === 'Auto' && d.endsWith('0000'))) status = 'Revoked';
+    if (mode === 'Not found' || (mode === 'Auto' && d.startsWith('9999'))) return null;
+    const n = parseInt(d.slice(-4), 10) || 0;
+    const signers = ['Jordan A. Ellis', 'Maria L. Soto', 'Kenneth R. Park', 'Alicia M. Brown'];
+    const docs = ['Birth Certificate', 'Marriage Certificate', 'Diploma', 'Power of Attorney'];
+    const countries = ['Spain', 'Italy', 'Mexico', 'Germany'];
+    const i = n % 4;
+    return {
+      status, number: 'DM-' + this.fmt(d), revokedOn: 'September 21, 2026',
+      badgeColor: status === 'Issued' ? 'success' : 'danger',
+      fields: [
+        ['Country', 'United States of America'],
+        ['Signed By', signers[i]],
+        ['Acting in the Capacity of', 'Notary Public, State of Utah'],
+        ['Bears the Seal/Stamp of', 'Notary Public, State of Utah'],
+        ['Certified At', 'Salt Lake City, Utah'],
+        ['Date Issued', 'September 14, 2026'],
+        ['Issued By', 'Office of the Lieutenant Governor'],
+        ['Document Type', docs[i]],
+        ['Destination Country', countries[i]],
+      ].map((r, k) => ({ label: r[0], value: r[1], bg: k % 2 ? 'var(--ax-gray-50)' : '#fff' })),
+    };
+  }
+
+  onVerify = () => {
+    const { cert, confirm, captcha } = this.state;
+    const errors = {};
+    if (this.digits(cert).length !== 12) errors.cert = 'Enter all 12 digits of the certificate number.';
+    if (!errors.cert && this.digits(confirm) !== this.digits(cert)) errors.confirm = 'Certificate numbers don’t match.';
+    if (captcha !== 'checked') errors.captcha = 'Please confirm you’re not a robot.';
+    this.setState({ errors, notFound: false });
+    if (Object.keys(errors).length) return;
+    this.setState({ verifying: true });
+    this.t1 = setTimeout(() => {
+      const record = this.lookup(cert);
+      if (!record) { this.setState({ verifying: false, notFound: true, lastQuery: 'DM-' + this.fmt(cert), captcha: 'idle' }); return; }
+      if (record.status === 'Issued' && (this.props.redirectToOfficial ?? true)) {
+        try { sessionStorage.setItem('ov-from-portal', '1'); } catch (e) {}
+        window.location.href = 'official-verification.dc.html?state=Utah&cert=' + encodeURIComponent(record.number);
+        return;
+      }
+      this.setState({ verifying: false, step: 'result', record, dl: 'email', email: '', code: '', downloaded: false, errors: {} });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 900);
+  };
+
+  onClear = () => { clearInterval(this.timer); this.setState({ step: 'verify', cert: '', confirm: '', captcha: 'idle', errors: {}, notFound: false, record: null, dl: 'email', email: '', code: '', resendIn: 0 }); };
+
+  onCaptcha = () => {
+    if (this.state.captcha !== 'idle') return;
+    this.setState({ captcha: 'loading', errors: { ...this.state.errors, captcha: null } });
+    setTimeout(() => this.setState({ captcha: 'checked' }), 700);
+  };
+
+  startResend() { clearInterval(this.timer); this.setState({ resendIn: 30 }); this.timer = setInterval(() => this.setState(s => { if (s.resendIn <= 1) { clearInterval(this.timer); return { resendIn: 0 }; } return { resendIn: s.resendIn - 1 }; }), 1000); }
+
+  onSendCode = () => {
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.state.email.trim());
+    if (!ok) { this.setState({ errors: { email: 'Enter a valid email address.' } }); return; }
+    this.setState({ sending: true, errors: {} });
+    setTimeout(() => { this.setState({ sending: false, dl: 'otp', code: '' }); this.startResend(); }, 900);
+  };
+
+  onCheckCode = () => {
+    const c = this.state.code;
+    if (c.length !== 6) { this.setState({ errors: { code: 'Enter the 6-digit code.' } }); return; }
+    this.setState({ checking: true, errors: {} });
+    setTimeout(() => {
+      if (c === '000000') { this.setState({ checking: false, errors: { code: 'That code is incorrect. Check your email and try again.' } }); return; }
+      clearInterval(this.timer);
+      this.setState({ checking: false, dl: 'done' });
+    }, 800);
+  };
+
+  onDownload = () => {
+    const r = this.state.record;
+    const lines = ['APOSTILLE', '(Convention de La Haye du 5 octobre 1961)', ''].concat(r.fields.map(f => f.label + ': ' + f.value), ['', 'Certificate No. ' + r.number, 'Verified via the e-Register, Office of the Lieutenant Governor, State of Utah']);
+    const esc = s => s.replace(/[\\()]/g, m => '\\' + m).replace(/[^\x20-\x7E]/g, '-');
+    let y = 720; const content = 'BT /F1 12 Tf ' + lines.map(l => { const s = `1 0 0 1 72 ${y} Tm (${esc(l)}) Tj `; y -= 20; return s; }).join('') + 'ET';
+    const pdf = `%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n3 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Contents 4 0 R/Resources<</Font<</F1 5 0 R>>>>>>endobj\n4 0 obj<</Length ${content.length}>>stream\n${content}\nendstream endobj\n5 0 obj<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF`;
+    const url = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
+    const a = document.createElement('a'); a.href = url; a.download = r.number + '.pdf'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    this.setState({ downloaded: true });
+  };
+
+  renderVals() {
+    const s = this.state;
+    const idx = { email: 0, otp: 1, done: 2 }[s.dl];
+    const [u, dom] = s.email.split('@');
+    const ht = this.props.showHeroText ?? false;
+    return {
+      showHeroText: ht,
+      showHome: this.props.showHomeButton ?? false,
+      feedback: this.props.feedbackChanges ?? true,
+      oldFooter: (this.props.feedbackChanges ?? true) && !(this.props.newFooter ?? true),
+      newFooterOn: (this.props.feedbackChanges ?? true) && (this.props.newFooter ?? true),
+      homeLeft: (this.props.feedbackChanges ?? true) && (this.props.homeLinkLeft ?? true) && !this.state.isMobile,
+      homeRight: (this.props.feedbackChanges ?? true) && (!(this.props.homeLinkLeft ?? true) || !!this.state.isMobile),
+      showOrder: false,
+      footCols: (() => { const w = this.state.footW || 1280; return w >= 1360 ? 'auto auto auto minmax(0, auto) auto auto' : w >= 720 ? 'repeat(3, minmax(0, 1fr))' : w >= 480 ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)'; })(),
+      footFirst: (this.state.footW || 1280) >= 1360 ? 'auto' : '1 / -1',
+      footDiv: (this.state.footW || 1280) >= 1360 ? '' : '',
+      goLtGov: () => window.open('https://ltgovernor.utah.gov', '_blank', 'noopener'),
+      heroMinH: ht ? 'min(22.6875rem, 28vw)' : '0px',
+      heroPad: ht ? 'clamp(1.5rem, 6vw, 5rem) clamp(0.75rem, 2vw, 1.25rem) calc(clamp(1.5rem, 3.5vw, 2.8125rem) + clamp(72px, 13vw, 11.4375rem))' : 'calc(clamp(3rem, calc(100vh - 44rem), 11.25rem) + clamp(72px, 13vw, 11.4375rem)) clamp(0.75rem, 2vw, 1.25rem) 0',
+      heroFlex: '0 0 auto',
+      navBtnSize: this.state.isMobile ? 'sm' : 'lg',
+      heroMaxH: 'none',
+      panelWrap: s.step === 'verify' ? 'wrap-reverse' : 'wrap',
+      icons: { house: React.createElement('img', { src: 'assets/icon-home-outline.svg', alt: '', width: 20, height: 20, style: { display: 'block' } }), back: this.ico('arrow-left'), lock: this.ico('lock-fill'), envelope: this.ico('envelope'), pencil: this.ico('pencil'), download: this.ico('download') },
+      features: [
+        { src: 'assets/icon-official-source.svg', label: 'Official Source for Verification' },
+        { src: 'assets/icon-secure.svg', label: 'Secure and Reliable' },
+        { src: 'assets/icon-accepted-worldwide.svg', label: 'Part of the Hague e-APP Framework' },
+      ],
+      isVerify: s.step === 'verify', isResult: s.step === 'result',
+      isIssued: s.record?.status === 'Issued', isRevoked: s.record?.status === 'Revoked',
+      record: s.record || { fields: [] },
+      cert: s.cert, confirm: s.confirm, errors: s.errors,
+      certInvalid: !!s.errors.cert, confirmInvalid: !!s.errors.confirm,
+      onCert: e => this.setState({ cert: this.fmt(e.target.value), errors: { ...s.errors, cert: null } }),
+      onConfirm: e => this.setState({ confirm: this.fmt(e.target.value), errors: { ...s.errors, confirm: null } }),
+      blockPaste: e => e.preventDefault(),
+      notFound: s.notFound, lastQuery: s.lastQuery,
+      captchaLoading: s.captcha === 'loading', captchaChecked: s.captcha === 'checked',
+      captchaBorder: s.errors.captcha ? 'var(--ax-border-error)' : 'var(--ax-gray-300)',
+      captchaBoxBorder: s.errors.captcha ? 'var(--ax-danger-500)' : 'var(--ax-gray-400)',
+      onCaptcha: this.onCaptcha, onClear: this.onClear, onVerify: this.onVerify, verifying: s.verifying,
+      goHome: () => window.open('https://portal.apostille-xpress.com/login', '_blank', 'noopener'),
+      dlSteps: [{ label: 'Email' }, { label: 'Verify Code' }, { label: 'Download' }], dlIndex: idx,
+      dlEmail: s.dl === 'email', dlOtp: s.dl === 'otp', dlDone: s.dl === 'done',
+      email: s.email, emailInvalid: !!s.errors.email, onEmail: e => this.setState({ email: e.target.value, errors: {} }),
+      sending: s.sending, onSendCode: this.onSendCode,
+      maskedEmail: u && dom ? u[0] + '•••@' + dom : s.email,
+      code: s.code, codeInvalid: !!s.errors.code, onCode: e => this.setState({ code: e.target.value.replace(/\D/g, '').slice(0, 6), errors: {} }),
+      checking: s.checking, onCheckCode: this.onCheckCode,
+      onChangeEmail: () => { clearInterval(this.timer); this.setState({ dl: 'email', code: '', errors: {} }); },
+      resendDisabled: s.resendIn > 0, resendLabel: s.resendIn > 0 ? `Resend Code (${s.resendIn}s)` : 'Resend Code',
+      onResend: () => this.startResend(),
+      fileName: (s.record?.number || '') + '.pdf', onDownload: this.onDownload, downloaded: s.downloaded,
+    };
+  }
+}
+</script>
+</body>
+</html>
