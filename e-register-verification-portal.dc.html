@@ -10,16 +10,16 @@
 <helmet>
   <title>e-Register Verification Portal — Office of the Lieutenant Governor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="ds/tokens/fonts.css">
-  <link rel="stylesheet" href="ds/tokens/colors.css">
-  <link rel="stylesheet" href="ds/tokens/typography.css">
-  <link rel="stylesheet" href="ds/tokens/spacing.css">
-  <link rel="stylesheet" href="ds/tokens/shadows.css">
-  <link rel="stylesheet" href="ds/tokens/base.css">
-  <link rel="stylesheet" href="ds/components.css">
-  <link rel="stylesheet" href="ds/styles.css">
+  <link rel="stylesheet" href="ds/tokens/fonts.css?v=rem1">
+  <link rel="stylesheet" href="ds/tokens/colors.css?v=rem1">
+  <link rel="stylesheet" href="ds/tokens/typography.css?v=rem1">
+  <link rel="stylesheet" href="ds/tokens/spacing.css?v=rem1">
+  <link rel="stylesheet" href="ds/tokens/shadows.css?v=rem1">
+  <link rel="stylesheet" href="ds/tokens/base.css?v=rem1">
+  <link rel="stylesheet" href="ds/components.css?v=rem1">
+  <link rel="stylesheet" href="ds/styles.css?v=rem1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <script src="ds/ds-bundle.js"></script>
+  <script src="ds/ds-bundle.js?v=rem1"></script>
   <style>
     html, body { margin: 0; background: var(--ax-gray-50); }
     * { box-sizing: border-box; }
@@ -33,16 +33,16 @@
 <div style="min-height: 100vh; background: var(--ax-gray-50); font-family: var(--ax-font-base); color: var(--ax-text-primary); display: flex; flex-direction: column;">
 
   <header style="position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--ax-gray-200); box-shadow: var(--ax-shadow-xs);">
-    <div style="max-width: 1440px; margin: 0 auto; padding: clamp(0.75rem, 2vw, 1.25rem) clamp(0.75rem, 2vw, 1.25rem); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+    <div style="max-width: 90rem; margin: 0 auto; padding: clamp(0.75rem, 2vw, 1.25rem) clamp(0.75rem, 2vw, 1.25rem); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: var(--ax-space-4);">
       <div style="display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 1.5rem); min-width: 0;">
-        <a href="https://authentications.utah.gov" target="_blank" rel="noopener" style="display: flex; min-width: 0; padding: 4px 8px; margin: -4px -8px; border-radius: 8px; background: transparent; transition: background-color 150ms ease;" style-hover="background: var(--ax-gray-200);" style-focus="outline: none; box-shadow: 0 0 0 4px rgba(0,182,189,.35);" aria-label="Office of Delmarva Secretary of State">
-        <span style="display:flex;align-items:center;gap:clamp(8px,1.2vw,14px);min-width:0;"><img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="display:block;flex:none;width:clamp(40px, 5vw, 60px);height:clamp(40px, 5vw, 60px);filter:brightness(0) invert(10%) sepia(60%) saturate(2800%) hue-rotate(205deg) brightness(95%);"><span style="display:flex;flex-direction:column;line-height:1.15;font-family:'Century Schoolbook','New Century Schoolbook','Century Schoolbook L','TeX Gyre Schola',Georgia,serif;color:#071D49;"><span style="font-size:clamp(12px,1.5vw,18px);">Office of Delmarva</span><span style="font-size:clamp(17px,2.3vw,28px);font-weight:700;">Secretary of State</span></span></span>
+        <a href="https://authentications.utah.gov" target="_blank" rel="noopener" style="display: flex; min-width: 0; padding: var(--ax-space-1) var(--ax-space-2); margin: -0.25rem -0.5rem; border-radius: var(--ax-radius-md); background: transparent; transition: background-color 150ms ease;" style-hover="background: var(--ax-gray-200);" style-focus="outline: none; box-shadow: 0 0 0 4px rgba(0,182,189,.35);" aria-label="Office of Delmarva Secretary of State">
+        <span style="display:flex;align-items:center;gap:clamp(var(--ax-space-2),1.2vw,0.875rem);min-width:0;"><img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="display:block;flex:none;width:clamp(2.5rem, 5vw, 3.75rem);height:clamp(2.5rem, 5vw, 3.75rem);filter:brightness(0) invert(10%) sepia(60%) saturate(2800%) hue-rotate(205deg) brightness(95%);"><span style="display:flex;flex-direction:column;line-height:1.15;font-family:'Century Schoolbook','New Century Schoolbook','Century Schoolbook L','TeX Gyre Schola',Georgia,serif;color:#071D49;"><span style="font-size:clamp(var(--ax-text-xs),1.5vw,var(--ax-text-lg));">Office of Delmarva</span><span style="font-size:clamp(1.0625rem,2.3vw,1.75rem);font-weight:700;">Secretary of State</span></span></span>
       </a><sc-if value="{{ homeLeft }}" hint-placeholder-val="{{ false }}">
           <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="{{ navBtnSize }}" leading-icon="{{ icons.house }}" on-click="{{ goLtGov }}" aria-label="Home — Office of the Utah Lieutenant Governor" hint-size="80px,40px">Home</x-import>
         </sc-if>
         
       </div>
-      <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+      <div style="display: flex; align-items: center; gap: var(--ax-space-3); flex-shrink: 0;">
         <sc-if value="{{ homeRight }}" hint-placeholder-val="{{ false }}">
           <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="{{ navBtnSize }}" leading-icon="{{ icons.house }}" on-click="{{ goLtGov }}" aria-label="Home — Office of the Utah Lieutenant Governor" hint-size="100px,44px">Home</x-import>
         </sc-if>
@@ -56,52 +56,52 @@
   <section data-screen-label="Hero" style="position: relative; background-image: url('assets/hero-utah-capitol.png'); background-size: cover; background-position: 70% center; min-height: {{ heroMinH }}; flex: {{ heroFlex }}; max-height: {{ heroMaxH }}; box-sizing: border-box;">
     <div style="max-width: 90rem; margin: 0 auto; box-sizing: border-box; padding: {{ heroPad }};">
       <sc-if value="{{ showHeroText }}" hint-placeholder-val="{{ false }}">
-      <div style="display: flex; align-items: center; gap: 10px; color: #071D49; font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: clamp(12px, 1.3vw, 16px);">
-        <span style="width: 16px; height: 2px; background: #071D49;"></span>
+      <div style="display: flex; align-items: center; gap: 0.625rem; color: #071D49; font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: clamp(var(--ax-text-xs), 1.3vw, var(--ax-text-md));">
+        <span style="width: 1rem; height: 2px; background: #071D49;"></span>
         <span style="color: #000000">Trusted for a Connected World</span>
-        <span style="width: 16px; height: 2px; background: #071D49;"></span>
+        <span style="width: 1rem; height: 2px; background: #071D49;"></span>
       </div>
-      <h1 style="margin: clamp(6px, 1vh, 12px) 0 clamp(4px, 1vh, 10px); font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; font-size: clamp(28px, min(4.4vw, 6vh), 56px); line-height: 1.12; color: #000000; max-width: 900px; text-wrap: pretty">Apostille and Authentication Services</h1>
-      <p style="margin: 0; font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; font-size: clamp(16px, 1.8vw, 24px); color: #000000">Secure. Efficient. Globally Accepted.</p>
+      <h1 style="margin: clamp(var(--ax-space-1-5), 1vh, var(--ax-space-3)) 0 clamp(var(--ax-space-1), 1vh, 0.625rem); font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; font-size: clamp(1.75rem, min(4.4vw, 6vh), 3.5rem); line-height: 1.12; color: #000000; max-width: 56.25rem; text-wrap: pretty">Apostille and Authentication Services</h1>
+      <p style="margin: 0; font-family: 'Century Schoolbook', 'New Century Schoolbook', 'Century Schoolbook L', 'TeX Gyre Schola', Georgia, serif; font-weight: 700; font-size: clamp(var(--ax-text-md), 1.8vw, 1.5rem); color: #000000">Secure. Efficient. Globally Accepted.</p>
       </sc-if>
     </div>
   </section>
 
-  <main style="position: relative; padding: 0 clamp(12px, 4vw, 48px) clamp(12px, 2vh, 24px); flex: 0 0 auto;">
-    <div data-screen-label="e-Register Card" style="max-width: 1160px; margin: 0 auto; background: #fff; border: 1px solid var(--ax-gray-200); border-radius: 12px; box-shadow: var(--ax-shadow-lg); overflow: visible;">
+  <main style="position: relative; padding: 0 clamp(var(--ax-space-3), 4vw, var(--ax-space-12)) clamp(var(--ax-space-3), 2vh, var(--ax-space-6)); flex: 0 0 auto;">
+    <div data-screen-label="e-Register Card" style="max-width: 72.5rem; margin: 0 auto; background: #fff; border: 1px solid var(--ax-gray-200); border-radius: var(--ax-radius-xl); box-shadow: var(--ax-shadow-lg); overflow: visible;">
 
-      <div style="position: relative; background: var(--ax-sea-depths); color: #fff; border-radius: 12px 12px 0 0; padding: clamp(14px, 2.2vh, 24px) clamp(104px, 14vw, 180px) clamp(14px, 2.2vh, 24px) clamp(20px, 4vw, 60px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px;">
-        <h2 style="margin: 0; font-weight: 600; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.25; color: #fff;">e-Register Verification Portal</h2>
-        <span style="font-size: clamp(13px, 1.3vw, 16px); color: rgba(255,255,255,0.92);">Office of Delmarva Secretary of State</span>
-        <span style="position:absolute;right:clamp(12px,2.4vw,32px);bottom:clamp(-38px,-3.4vw,-30px);width:clamp(88px,9vw,112px);height:clamp(88px,9vw,112px);z-index:2;border-radius:50%;background:#0D5257;border:4px solid #0D5257;box-sizing:border-box;display:flex;align-items:center;justify-content:center;"><img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="width:86%;height:86%;display:block;filter:brightness(0) invert(1);"></span>
+      <div style="position: relative; background: var(--ax-sea-depths); color: #fff; border-radius: var(--ax-radius-xl) var(--ax-radius-xl) 0 0; padding: clamp(0.875rem, 2.2vh, var(--ax-space-6)) clamp(6.5rem, 14vw, 11.25rem) clamp(0.875rem, 2.2vh, var(--ax-space-6)) clamp(var(--ax-space-5), 4vw, 3.75rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ax-space-1) var(--ax-space-6);">
+        <h2 style="margin: 0; font-weight: 600; font-size: clamp(var(--ax-text-xl), 2.4vw, 1.875rem); line-height: 1.25; color: #fff;">e-Register Verification Portal</h2>
+        <span style="font-size: clamp(0.8125rem, 1.3vw, var(--ax-text-md)); color: rgba(255,255,255,0.92);">Office of Delmarva Secretary of State</span>
+        <span style="position:absolute;right:clamp(var(--ax-space-3),2.4vw,var(--ax-space-8));bottom:clamp(-2.375rem,-3.4vw,-1.875rem);width:clamp(5.5rem,9vw,7rem);height:clamp(5.5rem,9vw,7rem);z-index:2;border-radius:50%;background:#0D5257;border:4px solid #0D5257;box-sizing:border-box;display:flex;align-items:center;justify-content:center;"><img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="width:86%;height:86%;display:block;filter:brightness(0) invert(1);"></span>
       </div>
 
-      <div style="display: flex; flex-wrap: {{ panelWrap }}; gap: 1px; background: var(--ax-gray-200); border-radius: 0 0 12px 12px; overflow: hidden;">
+      <div style="display: flex; flex-wrap: {{ panelWrap }}; gap: 0.0625rem; background: var(--ax-gray-200); border-radius: 0 0 var(--ax-radius-xl) var(--ax-radius-xl); overflow: hidden;">
 
         <sc-if value="{{ isVerify }}" hint-placeholder-val="{{ true }}">
-          <div style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(20px, 4vh, 48px) 24px clamp(20px, 4vh, 48px) clamp(20px, 4vw, 60px);">
-            <h3 style="margin: 0 0 clamp(10px, 2vh, 20px); font-weight: 600; font-size: 1.5rem; line-height: 1.2; color: #000000; text-wrap: pretty; max-width: 440px">Verify an Apostille or Authentication</h3>
-            <p style="margin: 0 0 clamp(16px, 3vh, 32px); font-size: 18px; line-height: 1.5; color: var(--ax-text-secondary); text-wrap: pretty;">Use the e-Register to verify the authenticity and status of an Apostille or Authentication issued by the State of Utah.</p>
-            <div style="display: flex; flex-direction: column; gap: clamp(10px, 1.8vh, 18px);">
-              <div style="display: flex; align-items: center; gap: 16px;">
-                <img src="assets/icon-official-source.svg" alt="" width="48" height="48" style="width: 48px; height: 48px; flex-shrink: 0; display: block;">
-                <span style="font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">Official Source for Verification</span>
+          <div style="flex: 1 1 min(100%, 23.75rem); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(var(--ax-space-5), 4vh, var(--ax-space-12)) var(--ax-space-6) clamp(var(--ax-space-5), 4vh, var(--ax-space-12)) clamp(var(--ax-space-5), 4vw, 3.75rem);">
+            <h3 style="margin: 0 0 clamp(0.625rem, 2vh, var(--ax-space-5)); font-weight: 600; font-size: 1.5rem; line-height: 1.2; color: #000000; text-wrap: pretty; max-width: 27.5rem">Verify an Apostille or Authentication</h3>
+            <p style="margin: 0 0 clamp(var(--ax-space-4), 3vh, var(--ax-space-8)); font-size: var(--ax-text-lg); line-height: 1.5; color: var(--ax-text-secondary); text-wrap: pretty;">Use the e-Register to verify the authenticity and status of an Apostille or Authentication issued by the State of Utah.</p>
+            <div style="display: flex; flex-direction: column; gap: clamp(0.625rem, 1.8vh, 1.125rem);">
+              <div style="display: flex; align-items: center; gap: var(--ax-space-4);">
+                <img src="assets/icon-official-source.svg" alt="" width="48" height="48" style="width: 3rem; height: 3rem; flex-shrink: 0; display: block;">
+                <span style="font-size: var(--ax-text-md); font-weight: 500; color: var(--ax-text-primary);">Official Source for Verification</span>
               </div>
-              <div style="display: flex; align-items: center; gap: 16px;">
-                <img src="assets/icon-secure.svg" alt="" width="48" height="48" style="width: 48px; height: 48px; flex-shrink: 0; display: block;">
-                <span style="font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">Secure and Reliable</span>
+              <div style="display: flex; align-items: center; gap: var(--ax-space-4);">
+                <img src="assets/icon-secure.svg" alt="" width="48" height="48" style="width: 3rem; height: 3rem; flex-shrink: 0; display: block;">
+                <span style="font-size: var(--ax-text-md); font-weight: 500; color: var(--ax-text-primary);">Secure and Reliable</span>
               </div>
-              <div style="display: flex; align-items: center; gap: 16px;">
-                <img src="assets/icon-accepted-worldwide.svg" alt="" width="48" height="48" style="width: 48px; height: 48px; flex-shrink: 0; display: block;">
-                <span style="font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">Part of the Hague e-APP Framework</span>
+              <div style="display: flex; align-items: center; gap: var(--ax-space-4);">
+                <img src="assets/icon-accepted-worldwide.svg" alt="" width="48" height="48" style="width: 3rem; height: 3rem; flex-shrink: 0; display: block;">
+                <span style="font-size: var(--ax-text-md); font-weight: 500; color: var(--ax-text-primary);">Part of the Hague e-APP Framework</span>
               </div>
             </div>
           </div>
 
-          <div style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(20px, 4vh, 48px) clamp(20px, 4vw, 60px) clamp(20px, 4vh, 48px) 24px; display: flex; flex-direction: column; gap: clamp(10px, 1.8vh, 20px);">
+          <div style="flex: 1 1 min(100%, 23.75rem); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(var(--ax-space-5), 4vh, var(--ax-space-12)) clamp(var(--ax-space-5), 4vw, 3.75rem) clamp(var(--ax-space-5), 4vh, var(--ax-space-12)) var(--ax-space-6); display: flex; flex-direction: column; gap: clamp(0.625rem, 1.8vh, var(--ax-space-5));">
             <div>
-              <h3 style="margin: 0 0 6px; font-weight: 600; font-size: 1.5rem; line-height: 1.25; color: #071D49;">Apostille/Certificate Details</h3>
-              <p style="margin: 0; font-size: 15px; color: var(--ax-text-tertiary);">For example: DM-1234-5678-9010</p>
+              <h3 style="margin: 0 0 var(--ax-space-1-5); font-weight: 600; font-size: 1.5rem; line-height: 1.25; color: #071D49;">Apostille/Certificate Details</h3>
+              <p style="margin: 0; font-size: 0.9375rem; color: var(--ax-text-tertiary);">For example: DM-1234-5678-9010</p>
             </div>
 
             <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
@@ -116,10 +116,10 @@
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" leading-icon="DM-" value="{{ confirm }}" on-change="{{ onConfirm }}" placeholder="1234-5678-9010" input-mode="numeric" autocomplete="off" aria-label="Verify Certificate Number" invalid="{{ confirmInvalid }}" hint-size="100%,50px"></x-import>
             </x-import>
 
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: clamp(8px, 1.4vh, 14px) 16px; background: var(--ax-gray-50); border: 1px solid {{ captchaBorder }}; border-radius: 6px; box-shadow: var(--ax-shadow-xs); max-width: 100%;">
-                <button type="button" onClick="{{ onCaptcha }}" aria-label="I’m not a robot" style="display: flex; align-items: center; gap: 14px; background: none; border: none; padding: 0; cursor: pointer; font-family: var(--ax-font-base); font-size: 16px; font-weight: 500; color: var(--ax-text-primary);">
-                  <span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 3px; background: #fff; border: 2px solid {{ captchaBoxBorder }}; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: var(--ax-success-600);">
+            <div style="display: flex; flex-direction: column; gap: var(--ax-space-1-5);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--ax-space-3); padding: clamp(var(--ax-space-2), 1.4vh, 0.875rem) var(--ax-space-4); background: var(--ax-gray-50); border: 1px solid {{ captchaBorder }}; border-radius: var(--ax-radius-sm); box-shadow: var(--ax-shadow-xs); max-width: 100%;">
+                <button type="button" onClick="{{ onCaptcha }}" aria-label="I’m not a robot" style="display: flex; align-items: center; gap: 0.875rem; background: none; border: none; padding: 0; cursor: pointer; font-family: var(--ax-font-base); font-size: var(--ax-text-md); font-weight: 500; color: var(--ax-text-primary);">
+                  <span style="width: 1.875rem; height: 1.875rem; flex-shrink: 0; border-radius: 0.1875rem; background: #fff; border: 2px solid {{ captchaBoxBorder }}; display: inline-flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--ax-success-600);">
                     <sc-if value="{{ captchaLoading }}" hint-placeholder-val="{{ false }}">
                       <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Spinner" size="sm" hint-size="18px,18px"></x-import>
                     </sc-if>
@@ -127,18 +127,18 @@
                   </span>
                   <span>I’m not a robot</span>
                 </button>
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 1px; color: var(--ax-text-tertiary);">
-                  <i class="bi bi-arrow-repeat" style="font-size: 28px; line-height: 1; color: var(--ax-info-600);"></i>
-                  <span style="font-size: 10px;">reCAPTCHA</span>
-                  <span style="font-size: 9px;">Privacy - Terms</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.0625rem; color: var(--ax-text-tertiary);">
+                  <i class="bi bi-arrow-repeat" style="font-size: 1.75rem; line-height: 1; color: var(--ax-info-600);"></i>
+                  <span style="font-size: 0.625rem;">reCAPTCHA</span>
+                  <span style="font-size: 0.5625rem;">Privacy - Terms</span>
                 </div>
               </div>
               <sc-if value="{{ errors.captcha }}" hint-placeholder-val="{{ false }}">
-                <span style="font-size: 13px; color: var(--ax-text-error);">{{ errors.captcha }}</span>
+                <span style="font-size: 0.8125rem; color: var(--ax-text-error);">{{ errors.captcha }}</span>
               </sc-if>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--ax-space-4); margin-top: var(--ax-space-1);">
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="lg" full-width="{{ true }}" on-click="{{ onClear }}" hint-size="100%,44px">Clear</x-import>
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ verifying }}" on-click="{{ onVerify }}" hint-size="100%,44px">Verify</x-import>
             </div>
@@ -146,17 +146,17 @@
         </sc-if>
 
         <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
-          <div data-screen-label="Certificate Result" style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 60px); display: flex; flex-direction: column; gap: 20px;">
+          <div data-screen-label="Certificate Result" style="flex: 1 1 min(100%, 23.75rem); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(1.75rem, 4vw, var(--ax-space-12)) clamp(var(--ax-space-5), 4vw, 3.75rem); display: flex; flex-direction: column; gap: var(--ax-space-5);">
             <div style="display: flex; justify-content: flex-start;">
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="link-gray" size="md" leading-icon="{{ icons.back }}" on-click="{{ onClear }}" hint-size="160px,20px">Verify Another</x-import>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="display: flex; flex-direction: column; gap: 0.625rem;">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.625rem;">
                 <h3 style="margin: 0; font-weight: 600; font-size: 1.5rem; line-height: 1.25; color: #071D49;">Apostille/Certificate Details</h3>
                 <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Badge" color="{{ record.badgeColor }}" size="lg" pill="{{ true }}" dot="{{ true }}" hint-size="80px,28px">{{ record.status }}</x-import>
               </div>
-              <p style="margin: 0; font-size: 15px; color: var(--ax-text-tertiary);">Certificate No. <strong style="color: var(--ax-text-primary); font-weight: 600;">{{ record.number }}</strong></p>
+              <p style="margin: 0; font-size: 0.9375rem; color: var(--ax-text-tertiary);">Certificate No. <strong style="color: var(--ax-text-primary); font-weight: 600;">{{ record.number }}</strong></p>
             </div>
 
             <sc-if value="{{ isIssued }}" hint-placeholder-val="{{ true }}">
@@ -166,27 +166,27 @@
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Alert" kind="danger" title="This apostille was revoked" hint-size="100%,72px">Revoked on {{ record.revokedOn }}. It is no longer valid and should not be accepted.</x-import>
             </sc-if>
 
-            <dl style="margin: 0; border: 1px solid var(--ax-gray-200); border-radius: 10px; overflow: hidden;">
+            <dl style="margin: 0; border: 1px solid var(--ax-gray-200); border-radius: var(--ax-radius-lg); overflow: hidden;">
               <sc-for list="{{ record.fields }}" as="row" hint-placeholder-count="8">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 2px 16px; padding: 12px 16px; border-top: 1px solid var(--ax-gray-200); background: {{ row.bg }};">
-                  <dt style="font-size: 14px; color: var(--ax-text-tertiary);">{{ row.label }}</dt>
-                  <dd style="margin: 0; font-size: 15px; font-weight: 500; color: var(--ax-text-primary);">{{ row.value }}</dd>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.25rem), 1fr)); gap: var(--ax-space-0-5) var(--ax-space-4); padding: var(--ax-space-3) var(--ax-space-4); border-top: 1px solid var(--ax-gray-200); background: {{ row.bg }};">
+                  <dt style="font-size: var(--ax-text-sm); color: var(--ax-text-tertiary);">{{ row.label }}</dt>
+                  <dd style="margin: 0; font-size: 0.9375rem; font-weight: 500; color: var(--ax-text-primary);">{{ row.value }}</dd>
                 </div>
               </sc-for>
             </dl>
           </div>
 
-          <div data-screen-label="Download" style="flex: 1 1 min(100%, 380px); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 60px); display: flex; flex-direction: column; gap: 24px;">
+          <div data-screen-label="Download" style="flex: 1 1 min(100%, 23.75rem); min-width: 0; box-sizing: border-box; background: #fff; padding: clamp(1.75rem, 4vw, var(--ax-space-12)) clamp(var(--ax-space-5), 4vw, 3.75rem); display: flex; flex-direction: column; gap: var(--ax-space-6);">
             <div>
-              <h3 style="margin: 0 0 6px; font-weight: 600; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.25; color: #071D49;">Download e-Apostille</h3>
-              <p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--ax-text-tertiary); text-wrap: pretty;">To protect the certificate holder, we confirm your identity by email before releasing the PDF.</p>
+              <h3 style="margin: 0 0 var(--ax-space-1-5); font-weight: 600; font-size: clamp(1.375rem, 2.4vw, 1.875rem); line-height: 1.25; color: #071D49;">Download e-Apostille</h3>
+              <p style="margin: 0; font-size: 0.9375rem; line-height: 1.5; color: var(--ax-text-tertiary); text-wrap: pretty;">To protect the certificate holder, we confirm your identity by email before releasing the PDF.</p>
             </div>
 
             <sc-if value="{{ isRevoked }}" hint-placeholder-val="{{ false }}">
-              <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px; border: 1px dashed var(--ax-gray-300); border-radius: 10px; background: var(--ax-gray-50);">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.875rem; padding: var(--ax-space-6); border: 1px dashed var(--ax-gray-300); border-radius: var(--ax-radius-lg); background: var(--ax-gray-50);">
                 <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FeaturedIcon" icon="{{ icons.lock }}" color="danger" size="lg" hint-size="48px,48px"></x-import>
-                <div style="font-size: 16px; font-weight: 600;">Download unavailable</div>
-                <div style="font-size: 14px; color: var(--ax-text-secondary); line-height: 1.5;">Revoked apostilles cannot be downloaded. Contact the Office of the Lieutenant Governor at <a href="mailto:authentications@utah.gov">authentications@utah.gov</a> for help.</div>
+                <div style="font-size: var(--ax-text-md); font-weight: 600;">Download unavailable</div>
+                <div style="font-size: var(--ax-text-sm); color: var(--ax-text-secondary); line-height: 1.5;">Revoked apostilles cannot be downloaded. Contact the Office of the Lieutenant Governor at <a href="mailto:authentications@utah.gov">authentications@utah.gov</a> for help.</div>
               </div>
             </sc-if>
 
@@ -194,7 +194,7 @@
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Stepper" steps="{{ dlSteps }}" current="{{ dlIndex }}" hint-size="100%,64px"></x-import>
 
               <sc-if value="{{ dlEmail }}" hint-placeholder-val="{{ true }}">
-                <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; flex-direction: column; gap: var(--ax-space-5);">
                   <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FormField" label="Email Address" required="{{ true }}" hint="We’ll send a 6-digit code to this address." error="{{ errors.email }}" hint-size="100%,96px">
                     <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" type="email" leading-icon="{{ icons.envelope }}" value="{{ email }}" on-change="{{ onEmail }}" placeholder="you@example.com" autocomplete="email" invalid="{{ emailInvalid }}" hint-size="100%,50px"></x-import>
                   </x-import>
@@ -203,13 +203,13 @@
               </sc-if>
 
               <sc-if value="{{ dlOtp }}" hint-placeholder-val="{{ false }}">
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                  <p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--ax-text-secondary);">We emailed a code to <strong style="color: var(--ax-text-primary);">{{ maskedEmail }}</strong>. It expires in 10 minutes.</p>
+                <div style="display: flex; flex-direction: column; gap: var(--ax-space-5);">
+                  <p style="margin: 0; font-size: 0.9375rem; line-height: 1.5; color: var(--ax-text-secondary);">We emailed a code to <strong style="color: var(--ax-text-primary);">{{ maskedEmail }}</strong>. It expires in 10 minutes.</p>
                   <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.FormField" label="Verification Code" required="{{ true }}" error="{{ errors.code }}" hint-size="100%,76px">
-                    <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" value="{{ code }}" on-change="{{ onCode }}" placeholder="••••••" input-mode="numeric" autocomplete="one-time-code" max-length="6" invalid="{{ codeInvalid }}" style="font-size: 22px; letter-spacing: 0.5em; text-align: center; font-weight: 600;" hint-size="100%,54px"></x-import>
+                    <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Input" size="lg" value="{{ code }}" on-change="{{ onCode }}" placeholder="••••••" input-mode="numeric" autocomplete="one-time-code" max-length="6" invalid="{{ codeInvalid }}" style="font-size: 1.375rem; letter-spacing: 0.5em; text-align: center; font-weight: 600;" hint-size="100%,54px"></x-import>
                   </x-import>
                   <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ checking }}" on-click="{{ onCheckCode }}" hint-size="100%,44px">Verify Code</x-import>
-                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--ax-space-3);">
                     <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="link-gray" size="sm" leading-icon="{{ icons.pencil }}" on-click="{{ onChangeEmail }}" hint-size="120px,20px">Change Email</x-import>
                     <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="link" size="sm" disabled="{{ resendDisabled }}" on-click="{{ onResend }}" hint-size="140px,20px">{{ resendLabel }}</x-import>
                   </div>
@@ -217,18 +217,18 @@
               </sc-if>
 
               <sc-if value="{{ dlDone }}" hint-placeholder-val="{{ false }}">
-                <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; flex-direction: column; gap: var(--ax-space-5);">
                   <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Alert" kind="success" title="Identity verified" hint-size="100%,56px">Your e-Apostille is ready to download.</x-import>
-                  <div style="display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--ax-gray-200); border-radius: 10px; box-shadow: var(--ax-shadow-xs);">
-                    <i class="bi bi-file-earmark-pdf-fill" style="font-size: 32px; color: var(--ax-danger-600);"></i>
+                  <div style="display: flex; align-items: center; gap: 0.875rem; padding: var(--ax-space-4); border: 1px solid var(--ax-gray-200); border-radius: var(--ax-radius-lg); box-shadow: var(--ax-shadow-xs);">
+                    <i class="bi bi-file-earmark-pdf-fill" style="font-size: 2rem; color: var(--ax-danger-600);"></i>
                     <div style="flex: 1; min-width: 0;">
-                      <div style="font-size: 15px; font-weight: 600; overflow-wrap: anywhere;">{{ fileName }}</div>
-                      <div style="font-size: 13px; color: var(--ax-text-tertiary);">e-Apostille · PDF · Digitally signed</div>
+                      <div style="font-size: 0.9375rem; font-weight: 600; overflow-wrap: anywhere;">{{ fileName }}</div>
+                      <div style="font-size: 0.8125rem; color: var(--ax-text-tertiary);">e-Apostille · PDF · Digitally signed</div>
                     </div>
                   </div>
                   <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" leading-icon="{{ icons.download }}" on-click="{{ onDownload }}" hint-size="100%,44px">Download e-Apostille</x-import>
                   <sc-if value="{{ downloaded }}" hint-placeholder-val="{{ false }}">
-                    <p style="margin: 0; font-size: 13px; color: var(--ax-text-tertiary); text-align: center;">Download started. Check your browser’s downloads folder.</p>
+                    <p style="margin: 0; font-size: 0.8125rem; color: var(--ax-text-tertiary); text-align: center;">Download started. Check your browser’s downloads folder.</p>
                   </sc-if>
                 </div>
               </sc-if>
@@ -241,7 +241,7 @@
 
   <sc-if value="{{ oldFooter }}" hint-placeholder-val="{{ false }}">
     <footer data-screen-label="Footer" style="margin-top: auto; background: #fff; border-top: 1px solid var(--ax-gray-200);">
-      <div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem 3rem;">
+      <div style="max-width: 90rem; margin: 0 auto; box-sizing: border-box; padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem 3rem;">
         <div style="display: flex; flex-direction: column; gap: 0.75rem;">
           <h2 style="margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; color: var(--ax-text-primary);">Office of the Utah Lieutenant Governor</h2>
           <address style="font-style: normal; font-size: 0.9375rem; line-height: 1.6; color: var(--ax-text-secondary);">350 N State Street, Suite 220<br>PO Box 142325<br>Salt Lake City, Utah 84114</address>
@@ -265,7 +265,7 @@
 
   <sc-if value="{{ newFooterOn }}" hint-placeholder-val="{{ false }}">
     <footer data-screen-label="Footer (Seal)" style="margin-top: auto; background: #fff; border-top: 1px solid var(--ax-gray-200);">
-      <div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: clamp(1.25rem, 2.2vw, 2rem) clamp(0.75rem, 2vw, 1.25rem); display: grid; grid-template-columns: {{ footCols }}; align-items: start; justify-content: space-between; column-gap: 1rem; row-gap: 1rem;">
+      <div style="max-width: 90rem; margin: 0 auto; box-sizing: border-box; padding: clamp(1.25rem, 2.2vw, 2rem) clamp(0.75rem, 2vw, 1.25rem); display: grid; grid-template-columns: {{ footCols }}; align-items: start; justify-content: space-between; column-gap: 1rem; row-gap: 1rem;">
         <div style="display: flex; align-items: center; align-self: center; gap: 1rem; grid-column: {{ footFirst }};">
           <img src="assets/delmarva-seal.svg" alt="Seal of Delmarva" style="display:block;flex:none;width:4.5rem;height:4.5rem;filter:brightness(0) invert(10%) sepia(60%) saturate(2800%) hue-rotate(205deg) brightness(95%);">
           <span style="font-size: 0.9375rem; font-weight: 500; line-height: 1.35; color: var(--ax-text-primary); max-width: 11rem;">Delmarva Secretary of State</span>
@@ -401,8 +401,8 @@ class Component extends DCLogic {
       footFirst: (this.state.footW || 1280) >= 1360 ? 'auto' : '1 / -1',
       footDiv: (this.state.footW || 1280) >= 1360 ? '' : '',
       goLtGov: () => window.open('https://ltgovernor.utah.gov', '_blank', 'noopener'),
-      heroMinH: ht ? 'min(22.6875rem, 28vw)' : '0px',
-      heroPad: ht ? 'clamp(1.5rem, 6vw, 5rem) clamp(0.75rem, 2vw, 1.25rem) calc(clamp(1.5rem, 3.5vw, 2.8125rem) + clamp(72px, 13vw, 11.4375rem))' : 'calc(clamp(3rem, calc(100vh - 44rem), 11.25rem) + clamp(72px, 13vw, 11.4375rem)) clamp(0.75rem, 2vw, 1.25rem) 0',
+      heroMinH: ht ? 'min(22.6875rem, 28vw)' : '0',
+      heroPad: ht ? 'clamp(1.5rem, 6vw, 5rem) clamp(0.75rem, 2vw, 1.25rem) calc(clamp(1.5rem, 3.5vw, 2.8125rem) + clamp(4.5rem, 13vw, 11.4375rem))' : 'calc(clamp(3rem, calc(100vh - 44rem), 11.25rem) + clamp(4.5rem, 13vw, 11.4375rem)) clamp(0.75rem, 2vw, 1.25rem) 0',
       heroFlex: '0 0 auto',
       navBtnSize: this.state.isMobile ? 'sm' : 'lg',
       heroMaxH: 'none',
