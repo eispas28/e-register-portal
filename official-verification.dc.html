@@ -244,13 +244,33 @@ class Component extends DCLogic {
   componentDidMount() {
     let fromPortal = false;
     try { fromPortal = sessionStorage.getItem('ov-from-portal') === '1'; sessionStorage.removeItem('ov-from-portal'); } catch (e) {}
-    if (!fromPortal && (this.props.reloadToPortal ?? true)) { window.location.replace('e-register-verification-portal.dc.html'); return; }
-    this.start();
+    const deep = /^#\/./.test(location.hash);
+    if (!fromPortal && !deep && (this.props.reloadToPortal ?? true)) { window.location.replace('e-register-verification-portal.dc.html'); return; }
+    window.removeEventListener('popstate', this._onPop); this._onPop = () => this.applyHash(); window.addEventListener('popstate', this._onPop);
+    if (deep) this.applyHash(); else this.start();
   }
   componentDidUpdate(prev) {
     if (prev.showRedirect !== this.props.showRedirect || prev.stateName !== this.props.stateName) this.start();
+    this.syncHash();
   }
-  componentWillUnmount() { clearTimeout(this._t); clearTimeout(this._toastT); clearTimeout(this._sendT); clearTimeout(this._subT); }
+  componentWillUnmount() { window.removeEventListener('popstate', this._onPop); clearTimeout(this._t); clearTimeout(this._toastT); clearTimeout(this._sendT); clearTimeout(this._subT); }
+  // Deep links: each screen has its own URL hash (e.g. #/verified/code), so a copied link reopens that exact screen.
+  screenOf(st) {
+    if (st.phase !== 'verify') return '';
+    return 'verified' + ({ email: '/email', otp: '/code' }[st.modal] || (st.toast ? '/sent' : ''));
+  }
+  syncHash() {
+    const want = this.screenOf(this.state);
+    if (!want || want === decodeURIComponent(location.hash.replace(/^#\/?/, ''))) return;
+    try { history.pushState(null, '', '#/' + want); } catch (e) {}
+  }
+  applyHash() {
+    const m = decodeURIComponent(location.hash.replace(/^#\/?/, '')).match(/^verified(?:\/(email|code|sent))?$/);
+    if (!m) return;
+    clearTimeout(this._t); clearTimeout(this._toastT); clearTimeout(this._sendT); clearTimeout(this._subT);
+    const v = m[1], mail = v === 'code' ? 'jane.doe@example.com' : '';
+    this.setState({ phase: 'verify', verifiedAt: this.state.verifiedAt || this.stamp(), modal: v === 'email' ? 'email' : v === 'code' ? 'otp' : null, toast: v === 'sent', email: mail, email2: mail, emailTouched: false, mismatch: false, otp: '', otpErr: false, resent: false, sending: false, submitting: false });
+  }
   stamp() {
     const d = new Date(), n = d.getDate();
     const sfx = (n % 100 >= 11 && n % 100 <= 13) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[n % 10] || 'th');
