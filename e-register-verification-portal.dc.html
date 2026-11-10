@@ -118,12 +118,12 @@
 
             <div style="display: flex; flex-direction: column; gap: var(--ax-space-1-5);">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--ax-space-3); padding: clamp(var(--ax-space-2), 1.4vh, 0.875rem) var(--ax-space-4); background: var(--ax-gray-50); border: 1px solid {{ captchaBorder }}; border-radius: var(--ax-radius-sm); box-shadow: var(--ax-shadow-xs); max-width: 100%;">
-                <button type="button" onClick="{{ onCaptcha }}" aria-label="I’m not a robot" style="display: flex; align-items: center; gap: 0.875rem; background: none; border: none; padding: 0; cursor: pointer; font-family: var(--ax-font-base); font-size: var(--ax-text-md); font-weight: 500; color: var(--ax-text-primary);">
+                <button type="button" onClick="{{ onCaptcha }}" role="checkbox" aria-checked="{{ captchaAria }}" aria-label="I’m not a robot" style="display: flex; align-items: center; gap: 0.875rem; background: none; border: none; padding: 0; cursor: pointer; font-family: var(--ax-font-base); font-size: var(--ax-text-md); font-weight: 500; color: var(--ax-text-primary);">
                   <span style="width: 1.875rem; height: 1.875rem; flex-shrink: 0; border-radius: 0.1875rem; background: #fff; border: 2px solid {{ captchaBoxBorder }}; display: inline-flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--ax-success-600);">
                     <sc-if value="{{ captchaLoading }}" hint-placeholder-val="{{ false }}">
                       <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Spinner" size="sm" hint-size="18px,18px"></x-import>
                     </sc-if>
-                    <sc-if value="{{ captchaChecked }}" hint-placeholder-val="{{ false }}"><i class="bi bi-check-lg"></i></sc-if>
+                    <sc-if value="{{ captchaChecked }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="display: block;"><polyline points="20 6 9 17 4 12"></polyline></svg></sc-if>
                   </span>
                   <span>I’m not a robot</span>
                 </button>
@@ -140,7 +140,7 @@
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--ax-space-4); margin-top: var(--ax-space-1);">
               <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="secondary" size="lg" full-width="{{ true }}" on-click="{{ onClear }}" hint-size="100%,44px">Clear</x-import>
-              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ verifying }}" on-click="{{ onVerify }}" hint-size="100%,44px">Verify</x-import>
+              <x-import component-from-global-scope="ApostilleXpressDesignSystem_141fbe.Button" variant="primary" size="lg" full-width="{{ true }}" loading="{{ verifying }}" disabled="{{ verifyDisabled }}" on-click="{{ onVerify }}" hint-size="100%,44px">Verify</x-import>
             </div>
           </div>
         </sc-if>
@@ -273,8 +273,8 @@
         <address style="font-style: normal; font-size: 0.875rem; line-height: 1.6; color: var(--ax-text-primary); box-sizing: border-box; {{ footDiv }}"><span><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Address</span>350 N State Street, Suite 220<br>PO Box 142325<br>Salt Lake City, Utah 84114</span></address>
         <div style="font-size: 0.875rem; line-height: 1.6; color: var(--ax-text-primary); box-sizing: border-box; {{ footDiv }}"><span><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Contact</span>Phone: 801-538-1041<br>Fax: 801-538-1133</span></div>
         <div style="font-size: 0.875rem; line-height: 1.6; color: var(--ax-text-primary); box-sizing: border-box; {{ footDiv }}"><span><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Office Hours</span>Open Monday – Friday, 8:00 a.m. to 5:00 p.m.<br>Excluding State and Federal holidays.</span></div>
-        <div style="box-sizing: border-box; {{ footDiv }}"><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Resources</span><nav style="display: flex; flex-direction: column; gap: 0.15rem;"><a href="https://authentications.utah.gov/request-form/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Request Forms</a><a href="https://authentications.utah.gov/news/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">News &amp; Updates</a><a href="https://authentications.utah.gov/frequently-asked-questions/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">FAQs</a><a href="https://authentications.utah.gov/contact-us/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Contact Us</a></nav></div>
-        <div style="box-sizing: border-box; {{ footDiv }}"><span style="display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ax-text-primary); margin-bottom: 0.35rem;">Services</span><nav style="display: flex; flex-direction: column; gap: 0.15rem;"><a href="https://authentications.utah.gov/process-from-home-page/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Document Authentication</a><a href="https://authentications.utah.gov/process-from-home-page/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Schedule An Appointment</a><a href="https://authentications.utah.gov/type-of-document-from-home-page/" target="_blank" rel="noopener" style="color: var(--ax-text-primary); text-decoration: underline; font-size: 0.875rem; line-height: 1.5; transition: color 0.15s;" style-hover="color: #2A7076; text-decoration-thickness: 2px;">Types of Documents</a></nav></div>
+        
+        
       </div>
     </footer>
   </sc-if>
@@ -369,7 +369,8 @@ class Component extends DCLogic {
   onClear = () => { clearInterval(this.timer); this.setState({ step: 'verify', cert: '', confirm: '', captcha: 'idle', errors: {}, notFound: false, record: null, dl: 'email', email: '', code: '', resendIn: 0 }); };
 
   onCaptcha = () => {
-    if (this.state.captcha !== 'idle') return;
+    if (this.state.captcha === 'loading') return;
+    if (this.state.captcha === 'checked') { this.setState({ captcha: 'idle' }); return; }
     this.setState({ captcha: 'loading', errors: { ...this.state.errors, captcha: null } });
     setTimeout(() => this.setState({ captcha: 'checked' }), 700);
   };
@@ -445,7 +446,7 @@ class Component extends DCLogic {
       onConfirm: e => this.setState({ confirm: this.fmt(e.target.value), errors: { ...s.errors, confirm: null } }),
       blockPaste: e => e.preventDefault(),
       notFound: s.notFound, lastQuery: s.lastQuery,
-      captchaLoading: s.captcha === 'loading', captchaChecked: s.captcha === 'checked',
+      captchaLoading: s.captcha === 'loading', captchaChecked: s.captcha === 'checked', captchaAria: s.captcha === 'checked' ? 'true' : 'false', verifyDisabled: !(this.digits(s.cert).length === 12 && this.digits(s.confirm) === this.digits(s.cert) && s.captcha === 'checked'),
       captchaBorder: s.errors.captcha ? 'var(--ax-border-error)' : 'var(--ax-gray-300)',
       captchaBoxBorder: s.errors.captcha ? 'var(--ax-danger-500)' : 'var(--ax-gray-400)',
       onCaptcha: this.onCaptcha, onClear: this.onClear, onVerify: this.onVerify, verifying: s.verifying,
